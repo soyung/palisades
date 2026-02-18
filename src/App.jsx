@@ -397,7 +397,7 @@ const DISTRICTS = {
     ),
     eligibleSpend: [
       "Acquiring, demolishing, relocating, repairing, or replacing disaster-damaged structures",
-      "Low- and moderate-income housing damaged or destroyed by disaster",
+      "Any disaster-damaged housing eligible for repair/replacement; affordable housing development also explicitly authorized",
       "Utility undergrounding and hardening (electrical lines, etc.)",
       "Water and energy resource access during emergencies",
       "Economic recovery from the disaster",
@@ -458,8 +458,8 @@ const CRD_DRD_ROWS = [
   drd: "✓ Acquiring, demolishing, repairing disaster-damaged buildings, structures, and improvements" },
 
 { feature: "Eligible Spending — Housing",
-  crd: "△ Affordable housing may be fundable if it qualifies as an eligible climate-resilience project",
-  drd: "✓ Low- and moderate-income housing damaged or destroyed by the disaster; affordable housing development also explicitly authorized" },
+  crd: "△ Conditional — Any housing project may be fundable if it qualifies as an eligible climate-resilience project",
+  drd: "✓ Any disaster-damaged housing is eligible for repair/replacement; affordable housing development also explicitly authorized" },
 
 { feature: "Eligible Spending — Utilities",
   crd: "△ Utility projects may be fundable if part of an eligible climate-resilience project",
