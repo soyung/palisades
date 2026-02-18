@@ -441,18 +441,9 @@ const COMPARE_ROWS = [
 
 const CRD_DRD_ROWS = [
   { feature: "Authorizing Law", crd: "SB 852 (2022)", drd: "SB 782 (2025, urgency)" },
-  {
-    feature: "Formation Trigger",
+  { feature: "Formation Trigger",
     crd: "None — any city, county, or special district can initiate proactively",
-    drd: (
-      <>
-        <strong style={{ color: "#b91c1c", fontWeight: 700 }}>
-          Governor-declared state of emergency required
-        </strong>{" "}
-        (Gov. Code §8625)
-      </>
-    ),
-  },
+    drd: "Governor-declared state of emergency required (Gov. Code §8625)" },
   { feature: "Formation Window", crd: "Any time — no deadline", drd: "Resolution must be adopted within 2 years of disaster proclamation" },
   { feature: "Formation Timeline", crd: "1–2 years (standard EIFD process)", drd: "Expedited — months, not years" },
   { feature: "Protest Rights", crd: "Preserved: < 25% approved | 25–50% → election | > 50% → halted", drd: "Substantially removed to enable speed" },
@@ -1360,7 +1351,7 @@ export default function App() {
 
             <div style={{ marginTop: 12, background: "#fffbeb", border: "1px solid #fde68a", borderRadius: 8, padding: "12px 16px" }}>
               <span style={{ fontSize: 12, color: "#92400e" }}>
-                <strong>Both share:</strong> Same 45-year duration, same PFA governance structure, same exclusion of school taxes, same GO bond/special tax powers (with voter approval), same CEQA requirements for individual projects.
+                <strong>Both share:</strong> Same 45-year duration, same PFA governance structure, same exclusion of school taxes, same GO bond/special tax powers (with voter approval), same California Environmental Quality Act (CEQA) requirements for individual projects.
               </span>
             </div>
           </section>
