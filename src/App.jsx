@@ -897,10 +897,10 @@ export default function App() {
             <h2 style={{ fontSize: 22, fontWeight: 700, color: T.heading, marginBottom: 18 }}>Family Tree</h2>
 
             {[
-              { id: "rda", depth: 0, tag: "crd-type", note: "First-generation TIF tool. Powerful and widely used, but fiscally unsustainable — the state backfilled school tax shortfalls until the cost became untenable. Abolished 2012." },
+              { id: "rda", depth: 0, tag: null, note: "First-generation TIF tool. Powerful and widely used, but fiscally unsustainable — the state backfilled school tax shortfalls until the cost became untenable. Abolished 2012." },
               { id: "ifd", depth: 0, tag: "sibling", note: "Parallel alternative to RDA, created for infrastructure financing. The 2/3 voter approval requirement made it nearly impossible to form in practice." },
               { id: "eifd", depth: 0, tag: "absorbs", note: "Born from RDA's abolition + IFD's legal skeleton. The real working foundation." },
-              { id: "crd", depth: 1, tag: null, note: "Climate-only subtype of EIFD. Adds special tax and GO bond powers. Proactive — no disaster required." },
+              { id: "crd", depth: 1, tag: "crd-type", note: "Climate-only subtype of EIFD. Adds special tax and GO bond powers. Proactive — no disaster required." },
               { id: "drd", depth: 1, tag: "crd-sub", note: "Disaster subtype of CRD (which is itself a subtype of EIFD). Requires Gov. emergency declaration. Expedited + reduced protest rights." },
             ].map((item) => {
               const dist = DISTRICTS[item.id];
@@ -941,7 +941,7 @@ export default function App() {
                         </span>
                       )}
                       {item.tag === "crd-sub" && (
-                        <span style={{ fontSize: 10, color: C.crd, fontStyle: "italic", background: `${C.drd}12`, padding: "1px 7px", borderRadius: 4 }}>
+                        <span style={{ fontSize: 10, color: C.drd, fontStyle: "italic", background: `${C.drd}12`, padding: "1px 7px", borderRadius: 4 }}>
                           subtype of CRD → subtype of EIFD
                         </span>
                       )}
