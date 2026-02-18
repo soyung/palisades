@@ -17,7 +17,7 @@ const C = {
 
 const DISTRICTS = {
   rda: {
-    id: "rda", label: "RDA", full: "Redevelopment Agency", color: C.rda,
+    id: "rda", label: "RDA", summary: "California's original TIF tool — powerful, widely used, and abolished in 2012.", full: "Redevelopment Agency", color: C.rda,
     status: "ABOLISHED 2012",
     law: <><a href="https://law.justia.com/codes/california/2011/code-hsc/division-24/part-1/" target="_blank" rel="noopener noreferrer" style={{color:"inherit",textDecoration:"underline",textDecorationColor:"#92400e",textUnderlineOffset:2}}>Community Redevelopment Law (H&S Code §33000) ↗</a></>,
     year: 1945, endYear: 2012,
@@ -37,7 +37,7 @@ const DISTRICTS = {
     ],
   },
   ifd: {
-    id: "ifd", label: "IFD", full: "Infrastructure Financing District", color: C.ifd,
+    id: "ifd", label: "IFD", summary: "A narrower parallel TIF tool created in 1990 for infrastructure — still active today.", full: "Infrastructure Financing District", color: C.ifd,
     status: "SUPERSEDED by EIFD",
     law: <><a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=53395" target="_blank" rel="noopener noreferrer" style={{color:"inherit",textDecoration:"underline",textDecorationColor:"#52525b",textUnderlineOffset:2}}>Gov. Code §53395 et seq. ↗</a> (enacted 1990)</>,
     year: 1990,
@@ -53,7 +53,7 @@ const DISTRICTS = {
     examples: [{ name: "No significant examples", year: null, reason: "2/3 voter approval threshold prevented formation", notes: "Rarely if ever successfully formed in its 22-year existence" }],
   },
   eifd: {
-    id: "eifd", label: "EIFD", full: "Enhanced Infrastructure Financing District", color: C.eifd,
+    id: "eifd", label: "EIFD", summary: "IFD's major 2014 upgrade: multi-agency, broader scope, no blight requirement.", full: "Enhanced Infrastructure Financing District", color: C.eifd,
     status: "ACTIVE — base tool",
     law: <><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=201320140SB628" target="_blank" rel="noopener noreferrer" style={{color:"inherit",fontWeight:600,textDecoration:"underline",textDecorationColor:"#1d4ed8",textUnderlineOffset:2}}>SB 628 (2014)</a>, <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=53398.50" target="_blank" rel="noopener noreferrer" style={{color:"inherit",textDecoration:"underline",textDecorationColor:"#1d4ed8",textUnderlineOffset:2}}>Gov. Code §53398.50 et seq.</a></>,
     year: 2014,
@@ -72,7 +72,7 @@ const DISTRICTS = {
     ],
   },
   crd: {
-    id: "crd", label: "CRD", full: "Climate Resilience District", color: C.crd,
+    id: "crd", label: "CRD", summary: "2022 EIFD subtype built for climate — adds special taxes, GO bonds, and special district participation.", full: "Climate Resilience District", color: C.crd,
     status: "ACTIVE — climate subtype of EIFD",
     law: <><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202120220SB852" target="_blank" rel="noopener noreferrer" style={{color:"inherit",fontWeight:600,textDecoration:"underline",textDecorationColor:"#047857",textUnderlineOffset:2}}>SB 852 (2022)</a>, <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=62300" target="_blank" rel="noopener noreferrer" style={{color:"inherit",textDecoration:"underline",textDecorationColor:"#047857",textUnderlineOffset:2}}>Gov. Code §62300 et seq.</a></>,
     year: 2022,
@@ -90,7 +90,7 @@ const DISTRICTS = {
     ],
   },
   drd: {
-    id: "drd", label: "DRD", full: "Disaster Recovery District", color: C.drd,
+    id: "drd", label: "DRD", summary: "2025 emergency CRD subtype — fast-tracked for post-disaster rebuild after the LA fires.", full: "Disaster Recovery District", color: C.drd,
     status: "ACTIVE — disaster subtype of CRD",
     law: <><a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB782" target="_blank" rel="noopener noreferrer" style={{color:"inherit",fontWeight:600,textDecoration:"underline",textDecorationColor:"#b91c1c",textUnderlineOffset:2}}>SB 782 (2025, urgency statute)</a>, amending <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=62300" target="_blank" rel="noopener noreferrer" style={{color:"inherit",textDecoration:"underline",textDecorationColor:"#b91c1c",textUnderlineOffset:2}}>Gov. Code §62300</a></>,
     year: 2025,
@@ -377,7 +377,7 @@ export default function App() {
   }, []);
 
   const setRef = (id) => (el) => { sectionRefs.current[id] = el; };
-  const d = DISTRICTS[activeDistrict];
+  const d = DISTRICTS[activeDistrict] || DISTRICTS["rda"];
   const isDeepActive = activeSection === "deep";
 
   const T = {
@@ -553,23 +553,31 @@ export default function App() {
             <div style={{ fontSize: 9, letterSpacing: 3, color: T.faint, textTransform: "uppercase", marginBottom: 10 }}>Details</div>
             <h2 style={{ fontSize: 22, fontWeight: 700, color: T.heading, marginBottom: 18 }}>District Deep-Dives</h2>
 
-            <div style={{ display: "flex", gap: 8, marginBottom: 20, flexWrap: "wrap" }}>
-              {Object.values(DISTRICTS).map(dist => (
-                <button key={dist.id} onClick={() => setActiveDistrict(dist.id)} style={{
-                  padding: "7px 15px", borderRadius: 20,
-                  border: `1px solid ${activeDistrict === dist.id ? dist.color : C.border}`,
-                  background: activeDistrict === dist.id ? `${dist.color}10` : C.surface,
-                  color: activeDistrict === dist.id ? dist.color : T.sub,
-                  cursor: "pointer", fontSize: 12.5, fontFamily: "Georgia, serif",
-                  fontWeight: activeDistrict === dist.id ? 700 : 400, transition: "all 0.12s",
-                  boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-                }}>
-                  {dist.label}
-                </button>
-              ))}
-            </div>
-
-            <div style={{ background: C.surface, border: `1px solid ${d.color}20`, borderRadius: 12, padding: 24, boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {Object.values(DISTRICTS).map(dist => {
+                const isOpen = activeDistrict === dist.id;
+                return (
+                  <div key={dist.id} style={{ border: `1px solid ${isOpen ? dist.color + "40" : C.border}`, borderRadius: 12, overflow: "hidden", background: C.surface, boxShadow: "0 1px 4px rgba(0,0,0,0.05)" }}>
+                    <button
+                      onClick={() => setActiveDistrict(isOpen ? null : dist.id)}
+                      style={{ width: "100%", display: "flex", alignItems: "stretch", background: "none", border: "none", cursor: "pointer", padding: 0, fontFamily: "Georgia, serif", textAlign: "left" }}
+                    >
+                      <div style={{ width: 5, background: dist.color, flexShrink: 0 }} />
+                      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 20px", gap: 12, background: isOpen ? `${dist.color}06` : "transparent" }}>
+                        <div>
+                          <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
+                            <span style={{ fontSize: 15.5, fontWeight: 700, color: dist.color }}>{dist.label}</span>
+                            <span style={{ fontSize: 12, color: "#9ca3af" }}>·</span>
+                            <span style={{ fontSize: 12, color: "#6b7280" }}>{dist.years}</span>
+                          </div>
+                          <div style={{ fontSize: 12.5, color: "#374151", marginTop: 4, lineHeight: 1.45 }}>{dist.summary}</div>
+                        </div>
+                        <span style={{ fontSize: 14, color: dist.color, flexShrink: 0, transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "transform 0.2s", lineHeight: 1 }}>▾</span>
+                      </div>
+                    </button>
+                    {isOpen && (
+                      <div style={{ borderTop: `1px solid ${dist.color}20`, padding: 24 }}>
+                        {(() => { const d = dist; return (<>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 18, flexWrap: "wrap", gap: 10 }}>
                 <div>
                   <h3 style={{ fontSize: 21, fontWeight: 700, color: d.color, margin: 0 }}>{d.label}</h3>
@@ -612,7 +620,7 @@ export default function App() {
 
               {(d.id === "crd" || d.id === "drd") && (
                 <div style={{ fontSize: 11, color: "#6b7280", marginTop: 8, padding: "8px 12px", background: "#f7f6f3", borderRadius: 6, border: "1px solid #e2e0db", lineHeight: 1.6 }}>
-                  <sup style={{ fontSize: 9, fontWeight: 700, color: d.color }}>*</sup> <strong>GO bonds (General Obligation bonds)</strong> — 일반 TIF 수익이 아닌 district 내 property owner의 재산세 전체를 담보로 하는 채권. TIF 채권보다 더 많은 금액 조달 가능하지만, property owner에게 직접적인 부담이 생기므로 투표 승인 필요.
+                  <sup style={{ fontSize: 9, fontWeight: 700, color: d.color }}>*</sup> <strong>GO bonds (General Obligation bonds)</strong> — Secured by the full property tax of owners within the district — not just TIF revenue. Allows larger borrowing, but requires voter approval since it directly affects all property owners.
                 </div>
               )}
               {d.boundaryRule && (
@@ -915,6 +923,13 @@ export default function App() {
                 </div>
               </div>
             ))}
+          </section></>); })()}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </section>
 
         </div>
