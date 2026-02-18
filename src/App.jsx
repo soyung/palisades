@@ -390,7 +390,7 @@ const DISTRICTS = {
     govBody: "Same PFA (3 elected + 2 public); initiated by county Board of Supervisors or city council",
     moneyRaised: (
       <>
-        Same as CRD: TIF + benefit assessments + special taxes + GO bonds
+        Same as CRD: TIF + benefit assessments + special taxes + property-related fees + GO bonds
         <sup style={{ fontSize: 9, color: "#b91c1c", fontWeight: 700 }}>*</sup>{" "}
         (voter approval still required)
       </>
