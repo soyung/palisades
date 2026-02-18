@@ -961,9 +961,9 @@ export default function App() {
           <section ref={setRef("deep")} data-section="deep" style={{ marginBottom: 70 }}>
             <div style={{ fontSize: 9, letterSpacing: 3, color: T.faint, textTransform: "uppercase", marginBottom: 10 }}>Details</div>
             <h2 style={{ fontSize: 22, fontWeight: 700, color: T.heading, marginBottom: 18 }}>District Deep-Dives</h2>
-<p style={{ fontSize: 13, color: T.sub, margin: 0 }}>
+<p style={{ fontSize: 17, color: T.sub, margin: 0 }}>
     <span style={{ marginRight: 6 }}>👇</span> 
-    Click on a district below to see its history and powers.
+    Click to expand.
   </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {Object.values(DISTRICTS).map((dist) => {
@@ -1148,7 +1148,7 @@ export default function App() {
           <section ref={setRef("compare")} data-section="compare" style={{ marginBottom: 70 }}>
             <div style={{ fontSize: 9, letterSpacing: 3, color: T.faint, textTransform: "uppercase", marginBottom: 10 }}>Side-by-Side</div>
             <h2 style={{ fontSize: 22, fontWeight: 700, color: T.heading, marginBottom: 8 }}>Comparison Table</h2>
-            <p style={{ fontSize: 12.5, color: T.sub, marginBottom: 16 }}>Select districts to filter columns</p>
+            <p style={{ fontSize: 17, color: T.sub, marginBottom: 16 }}>Select to filter columns</p>
 
             <div style={{ display: "flex", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
               {Object.values(DISTRICTS).map((dist) => (
