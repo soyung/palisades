@@ -654,7 +654,7 @@ function BranchingTimeline({ onSelectDistrict }) {
 // ── MAIN APP ───────────────────────────────────────────────────────────
 export default function App() {
   const [activeSection, setActiveSection] = useState("timeline");
-  const [activeDistrict, setActiveDistrict] = useState("rda");
+  const [activeDistrict, setActiveDistrict] = useState(null);
   const [deepOpen, setDeepOpen] = useState(true);
   const [compareFilter, setCompareFilter] = useState([]);
   const sectionRefs = useRef({});
