@@ -551,7 +551,7 @@ function BranchingTimeline({ onSelectDistrict }) {
           opacity="0.45"
           markerEnd="url(#arr-ifd)"
         />
-        <text x="190" y={nc("ifd").y + 36} fill={C.ifd} fontSize="9" fontFamily="Georgia, serif" opacity="0.5" textAnchor="middle">
+        <text x="190" y={nc("ifd").y + 20} fill={C.ifd} fontSize="9" fontFamily="Georgia, serif" opacity="0.5" textAnchor="middle">
           legal DNA →
         </text>
 
