@@ -470,8 +470,8 @@ function BranchingTimeline({ onSelectDistrict }) {
   const W = 720, H = 340;
 
   const nodes = [
-    { id: "rda", x: 70, y: 80, r: 28, label: "RDA", sub: "1945", note: "great-grandparent" },
-    { id: "ifd", x: 170, y: 230, r: 22, label: "IFD", sub: "1990", note: "sibling, unused" },
+    { id: "rda", x: 70, y: 80, r: 28, label: "RDA", sub: "1945", note: "first-generation TIF" },
+    { id: "ifd", x: 170, y: 230, r: 22, label: "IFD", sub: "1990", note: "parallel alternative" },
     { id: "eifd", x: 310, y: 155, r: 30, label: "EIFD", sub: "2014", note: "real foundation" },
     { id: "crd", x: 510, y: 95, r: 22, label: "CRD", sub: "2022", note: "climate subtype" },
     { id: "drd", x: 630, y: 145, r: 20, label: "DRD", sub: "2025", note: "disaster subtype" },
@@ -897,8 +897,8 @@ export default function App() {
             <h2 style={{ fontSize: 22, fontWeight: 700, color: T.heading, marginBottom: 18 }}>Family Tree</h2>
 
             {[
-              { id: "rda", depth: 0, tag: null, note: "Great-grandparent. Powerful, widely used, fiscally unsustainable — abolished 2012." },
-              { id: "ifd", depth: 0, tag: "sibling", note: "Created as an RDA alternative but nearly useless. The 2/3 voter threshold was fatal." },
+              { id: "rda", depth: 0, tag: null, note: "First-generation TIF tool. Powerful and widely used, but fiscally unsustainable — the state backfilled school tax shortfalls until the cost became untenable. Abolished 2012." },
+              { id: "ifd", depth: 0, tag: "sibling", note: "Parallel alternative to RDA, created for infrastructure financing. The 2/3 voter approval requirement made it nearly impossible to form in practice." },
               { id: "eifd", depth: 0, tag: "absorbs", note: "Born from RDA's abolition + IFD's legal skeleton. The real working foundation." },
               { id: "crd", depth: 1, tag: null, note: "Climate-only subtype of EIFD. Adds special tax and GO bond powers. Proactive — no disaster required." },
               { id: "drd", depth: 1, tag: "crd-sub", note: "Disaster subtype of CRD (which is itself a subtype of EIFD). Requires Gov. emergency declaration. Expedited + reduced protest rights." },
@@ -927,7 +927,7 @@ export default function App() {
 
                       {item.tag === "sibling" && (
                         <span style={{ fontSize: 10, color: C.ifd, fontStyle: "italic", background: `${C.ifd}12`, padding: "1px 7px", borderRadius: 4 }}>
-                          sibling to RDA, not child
+                          parallel alternative to RDA
                         </span>
                       )}
                       {item.tag === "absorbs" && (
