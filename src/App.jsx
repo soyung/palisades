@@ -757,12 +757,10 @@ export default function App() {
             box-shadow: 2px 0 16px rgba(0,0,0,0.15);
           }
           .sidebar-open { transform: translateX(0) !important; }
-          .mobile-overlay { display: block !important; }
           .mobile-main { padding-top: 60px !important; padding-left: 20px !important; padding-right: 20px !important; }
         }
         @media (min-width: 769px) {
           .mobile-header { display: none !important; }
-          .mobile-overlay { display: none !important; }
         }
       `}</style>
 
@@ -782,9 +780,11 @@ export default function App() {
       </div>
 
       {/* ── MOBILE OVERLAY ── */}
-      <div className="mobile-overlay" onClick={() => setSidebarOpen(false)} style={{
-        display: "none", position: "fixed", inset: 0, background: "rgba(0,0,0,0.3)", zIndex: 149,
-      }} />
+      {sidebarOpen && (
+        <div onClick={() => setSidebarOpen(false)} style={{
+          position: "fixed", inset: 0, background: "rgba(0,0,0,0.3)", zIndex: 149,
+        }} />
+      )}
 
       {/* ── SIDEBAR ── */}
       <aside
