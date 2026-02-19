@@ -671,6 +671,7 @@ export default function App() {
   const [openDistricts, setOpenDistricts] = useState(new Set());
   const [deepOpen, setDeepOpen] = useState(true);
   const [compareFilter, setCompareFilter] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const sectionRefs = useRef({});
 
   const sections = [
@@ -696,6 +697,7 @@ export default function App() {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
       setActiveSection(id);
     }
+    setSidebarOpen(false);
   };
 
   const scrollToDistrict = (districtId) => {
@@ -706,6 +708,7 @@ export default function App() {
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 60);
     setActiveSection("deep");
+    setSidebarOpen(false);
   };
 
   useEffect(() => {
@@ -740,8 +743,52 @@ export default function App() {
 
   return (
     <div style={{ display: "flex", minHeight: "100vh", background: C.bg, color: T.body, fontFamily: "Georgia, serif" }}>
+
+      {/* ── CSS ── */}
+      <style>{`
+        @media (max-width: 768px) {
+          .mobile-header { display: flex !important; }
+          .sidebar {
+            position: fixed !important;
+            top: 0; left: 0;
+            z-index: 150;
+            transform: translateX(-100%);
+            transition: transform 0.25s ease;
+            box-shadow: 2px 0 16px rgba(0,0,0,0.15);
+          }
+          .sidebar-open { transform: translateX(0) !important; }
+          .mobile-overlay { display: block !important; }
+          .mobile-main { padding-top: 60px !important; padding-left: 20px !important; padding-right: 20px !important; }
+        }
+        @media (min-width: 769px) {
+          .mobile-header { display: none !important; }
+          .mobile-overlay { display: none !important; }
+        }
+      `}</style>
+
+      {/* ── MOBILE HEADER ── */}
+      <div className="mobile-header" style={{
+        display: "none", position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+        background: "#ffffff", borderBottom: `1px solid ${C.border}`,
+        padding: "12px 16px", alignItems: "center", justifyContent: "space-between",
+      }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: T.heading }}>CA TIF Districts</div>
+        <button onClick={() => setSidebarOpen(o => !o)} style={{
+          background: "none", border: `1px solid ${C.border}`, borderRadius: 6,
+          padding: "6px 12px", cursor: "pointer", fontSize: 16, color: T.sub, lineHeight: 1,
+        }}>
+          {sidebarOpen ? "✕" : "☰"}
+        </button>
+      </div>
+
+      {/* ── MOBILE OVERLAY ── */}
+      <div className="mobile-overlay" onClick={() => setSidebarOpen(false)} style={{
+        display: "none", position: "fixed", inset: 0, background: "rgba(0,0,0,0.3)", zIndex: 149,
+      }} />
+
       {/* ── SIDEBAR ── */}
       <aside
+        className={"sidebar" + (sidebarOpen ? " sidebar-open" : "")}
         style={{
           width: 208,
           flexShrink: 0,
@@ -858,7 +905,7 @@ export default function App() {
 
       {/* ── MAIN ── */}
       <main style={{ flex: 1, overflowY: "auto" }}>
-        <div style={{ padding: "44px 44px 100px", maxWidth: 860 }}>
+        <div className="mobile-main" style={{ padding: "44px 44px 100px", maxWidth: 860 }}>
           {/* HEADER */}
           <div style={{ marginBottom: 56 }}>
             <div style={{ fontSize: 9, letterSpacing: 3, color: T.faint, textTransform: "uppercase", marginBottom: 10 }}>Reference Guide</div>
